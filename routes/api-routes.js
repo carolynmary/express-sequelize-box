@@ -44,30 +44,33 @@ module.exports = function (app) {
       let optionTwoResults = 0;
       let optionThreeResults = 0;
       let optionFourResults = 0;
-      Votes.findAll().then((voteResults) => {
-         Poll.findAll().then((pollResults) => {
-            voteResults.forEach((vResult) => {
-               pollResults.forEach((pResult) => {
-                  if (pResult.optionOne === vResult.optionSelection) {
-                     returnoptionOneResults = optionOneResults + 1;
-                  }
-                  if (pResult.optionTwo === vResult.optionSelection) {
-                     optionTwoResults = optionTwoResults + 1;
-                  }
-                  if (pResult.optionOThree === vResult.optionSelection) {
-                     optionThreeResults = optionThreeResults + 1;
-                  }
-                  if (pResult.optionFour === vResult.optionSelection) {
-                     optionFourResults = optionFourResults + 1;
-                  }
+      Votes.findAll()
+         .then((voteResults) => {
+            Poll.findAll()
+               .then((pollResults) => {
+                  voteResults.forEach((vResult) => {
+                     pollResults.forEach((pResult) => {
+                        if (pResult.optionOne === vResult.optionSelection) {
+                           optionOneResults += 1;
+                        }
+                        console.log("1: " + pResult.optionOne.vResult.optionSelection);
+                        if (pResult.optionTwo === vResult.optionSelection) {
+                           optionTwoResults += 1;
+                        }
+                        if (pResult.optionOThree === vResult.optionSelection) {
+                           optionThreeResults += 1;
+                        }
+                        if (pResult.optionFour === vResult.optionSelection) {
+                           optionFourResults += 1;
+                        }
+                     });
+                  });
                });
-            });
          });
-      });
-      console.log("ONE", optionOneResults);
-      console.log("TWO", optionTwoResults);
-      console.log("THREE", optionThreeResults);
-      console.log("FOUR", optionFourResults);
+      console.log("ONE:", optionOneResults);
+      console.log("TWO:", optionTwoResults);
+      console.log("THREE:", optionThreeResults);
+      console.log("FOUR:", optionFourResults);
       res.json({
          optionOneResults,
          optionTwoResults,
