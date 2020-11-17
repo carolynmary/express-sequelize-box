@@ -14,10 +14,11 @@ module.exports = function (app) {
 
    app.post("/api/vote", (req, res) => {
       // console.log(req.body);
-      Votes.create(req.body).then((results) => {
-         console.log(results);
-         res.json(results);
-      });
+      Votes.create(req.body)
+         .then((results) => {
+            console.log(results);
+            res.json(results);
+         });
    });
 
    //=== ADD A POLL ===================================

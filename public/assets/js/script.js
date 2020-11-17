@@ -1,3 +1,4 @@
+//=== ADD A POLL ===================================================================================================
 $("#submitpoll").on("click", (event) => {
    event.preventDefault();
    const newPoll = {
@@ -20,18 +21,23 @@ $("#submitpoll").on("click", (event) => {
       row.append("<br>");
       row.append("<button id='vote-button'>Submit</button>");
       $("#polldisplay").prepend(row);
-      $("#vote-button").on("click", () => {
+      $("#cms").empty();
+
+
+      //=== VOTING ===================================================================================================
+      $("#vote-button").on("click", (data) => {
          console.log("%c this is the data inside vote btn", "color:green; background-color:yellow; fonts-size:22px");
-         console.log(data);
          const choice = document.querySelector("input[name=os]:checked").value;
          const pollData = {
             optionSelect: choice,
             pollId: data.id,
          };
+         console.log(pollData.optionSelect);
+         
          $.post("/api/vote", pollData, (data) => {
             $.get("/api/results", (results) => {
                // READ NOTE IN PARENTHESES BELOW * * * * * * * * * * * * * * * * * * * * * 
-               renderCanvas(******need to add the 4 values that we get back from the Get Voting Results api call******);
+               // renderCanvas(******need to add the 4 values that we get back from the Get Voting Results api call******);
             });
          });
 
