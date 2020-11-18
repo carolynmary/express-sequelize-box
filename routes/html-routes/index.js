@@ -1,13 +1,15 @@
 const express = require("express");
 const router = express.Router();
-const commentsRoute = require("./comments");
+const pollsRoute = require("./htmlRoutes");
+
 
 // get route -> index
 router.get("/", (req, res) => {
-   res.redirect("/comments");
+   res.redirect("/createPoll");
 });
 
-// comments page
-router.use("/comments", commentsRoute);
+// poll page
+   router.use("/createPoll", pollsRoute);
+
 
 module.exports = router;

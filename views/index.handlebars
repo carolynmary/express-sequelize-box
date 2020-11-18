@@ -1,17 +1,36 @@
-{{!-- <div class="col-md-12 "
-     id="top-bar">
-   <h1> Sequelize box </h1>
+<!DOCTYPE html>
+<html>
+<head>
+   <title>Home</title>
+   {{> head}}
+</head>
+
+<body>
+{{!-- PARAGRAPH --}}
+<div class="box sb1">
+      <h4>Life happens pretty fast...<br>make plans in a flash</h4>
+</div>
+<div class="box sb1">
+		<h4>POLLIFE takes the guesswork out of those tough social decisions. Put it in a poll and let everyone else decide! </h4>
 </div>
 
-<div class="container">
+{{!-- CREATE POLL HANDLEBARS --}}
    <div class="row">
-
-
-      {{!-- view cooment  --}}
-      {{> viewComments}}
-
-      {{!-- post comment --}}
-      {{> postComments}}
-
+      {{!-- adding the ">" symbol in handlebars directs it to the corresponding file in the folder "partials" --}}
+      {{!-- This makes it easier for more than one person to work on code within the same page  --}}
+      {{> createPoll}}
    </div>
-</div> --}}
+
+
+<br><br><br>
+</body>
+
+{{!-- FOOTER --}}
+<footer> 
+   <div>
+   {{!-- <a href="/api/all">vote in polls</a> --}}
+   <a href="/polls" action="/api/all" method="GET">View Polls</a>
+   </div><br><br>
+   <h2>disclaimer: all votes are legal, official, and final. No recounts.</h2><br>
+	<small>&copy; COPYRIGHT 2020, POLLIFE</small> </footer>
+
