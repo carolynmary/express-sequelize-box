@@ -44,16 +44,15 @@ module.exports = function (app) {
       let optionTwoResults = 0;
       let optionThreeResults = 0;
       let optionFourResults = 0;
-      Votes.findAll()
-         .then((voteResults) => {
-            Poll.findAll()
-               .then((pollResults) => {
-                  voteResults.forEach((vResult) => {
-                     pollResults.forEach((pResult) => {
+      Poll.findAll()
+         .then((pollResults) => {
+            Votes.findAll()
+               .then((voteResults) => {
+                  pollResults.forEach((pResult) => { 
+                     voteResults.forEach((vResult) =>{
                         if (pResult.optionOne === vResult.optionSelection) {
                            optionOneResults += 1;
                         }
-                        console.log("1: " + pResult.optionOne.vResult.optionSelection);
                         if (pResult.optionTwo === vResult.optionSelection) {
                            optionTwoResults += 1;
                         }
@@ -78,7 +77,4 @@ module.exports = function (app) {
          optionFourResults,
       });
    });
-
-
-
 };

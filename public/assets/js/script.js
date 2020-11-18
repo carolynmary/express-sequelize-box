@@ -12,13 +12,13 @@ $("#submitpoll").on("click", (event) => {
    $.post("/api/new", newPoll, (data) => {
       console.table(data);
       const row = $("<div id='vote-form'>");
-      row.append("<p>" + data.user + " asked: </p>");
+      row.append("<h3>" + data.user + " asked: </h3>");
       row.append("<p>" + data.question + "</p>");
       row.append("<input type='radio' name='os' value='" + data.optionOne + "'>" + data.optionOne);
-      row.append("<input type='radio' name='os' value='" + data.optionTwo + "'>" + data.optionTwo);
-      row.append("<input type='radio' name='os' value='" + data.optionThree + "'>" + data.optionThree);
-      row.append("<input type='radio' name='os' value='" + data.optionFour + "'>" + data.optionFour);
-      row.append("<br>");
+      row.append("<br><br><input type='radio' name='os' value='" + data.optionTwo + "'>" + data.optionTwo);
+      row.append("<br><br><input type='radio' name='os' value='" + data.optionThree + "'>" + data.optionThree);
+      row.append("<br><br><input type='radio' name='os' value='" + data.optionFour + "'>" + data.optionFour);
+      row.append("<br><br><br>");
       row.append("<button id='vote-button'>Submit</button>");
       $("#polldisplay").prepend(row);
       $("#cms").empty();
@@ -36,8 +36,34 @@ $("#submitpoll").on("click", (event) => {
          
          $.post("/api/vote", pollData, (data) => {
             $.get("/api/results", (results) => {
+               
+               const dataPoints = [
+                  { label: "option-one", y: 1},
+                  { label: "option-two", y: 3 },
+                  { label: "option-three", y: 0},
+                  { label: "option-four", y: 1}
+               ];
+               const chartContainer = document.querySelector("#chartContainer");
+               // taking data and rendring in chart
+               if (chartContainer) {
+                  // ajax call to get data
+                  const chart = new CanvasJS.Chart("chartContainer", {
+                     animationEnabled: true,
+                     theme: "theme1",
+                     title: {
+                        text: "Bar Results"
+                     },
+                     data: [
+                        {
+                           type: "column",
+                           dataPoints: dataPoints
+                        }
+                     ]
+                  });
+                  chart.render();
+               }
                // READ NOTE IN PARENTHESES BELOW * * * * * * * * * * * * * * * * * * * * * 
-               // renderCanvas(******need to add the 4 values that we get back from the Get Voting Results api call******);
+               // renderCanvas(need to add the 4 values that we get back from the Get Voting Results api call);
             });
          });
 
@@ -46,33 +72,7 @@ $("#submitpoll").on("click", (event) => {
 });
 
 //=== CANVAS JS CHART ======================================================================
-function renderCanvas(opt1, opt2, opt3, opt4) {
-   const dataPoints = [
-      { label: "option-one", y: opt1 },
-      { label: "option-two", y: opt2 },
-      { label: "option-three", y: opt3 },
-      { label: "option-four", y: opt4 }
-   ];
-   const chartContainer = document.querySelector("#chartContainer");
-   // taking data and rendring in chart
-   if (chartContainer) {
-      // ajax call to get data
-      const chart = new CanvasJS.Chart("chartContainer", {
-         animationEnabled: true,
-         theme: "theme1",
-         title: {
-            text: "Bar Results"
-         },
-         data: [
-            {
-               type: "column",
-               dataPoints: dataPoints
-            }
-         ]
-      });
-      chart.render();
-   }
-}
+
 
 // });
 //=== CALLING CANVAS JS CHART AND VOTING FUNCTIONS ======================================================
@@ -99,3 +99,5 @@ function renderCanvas(opt1, opt2, opt3, opt4) {
 //    e.preventDefault();
 // });
 // voteChart();
+
+
