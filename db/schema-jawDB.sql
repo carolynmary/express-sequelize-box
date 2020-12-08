@@ -15,7 +15,7 @@ CREATE TABLE polls (
 CREATE TABLE votes (
 	id INT AUTO_INCREMENT NOT NULL,
     optionSelect VARCHAR(30) NOT NULL,
-    pollId INT NOT NULL,
+    pollId INT NOT NULL, 
     createdAt TIMESTAMP NOT NULL,
     PRIMARY KEY(id),
     FOREIGN KEY (pollId) REFERENCES polls(id)
