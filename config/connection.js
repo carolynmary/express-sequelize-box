@@ -9,7 +9,6 @@ let sequelize;
 //  NEED TO TEST THE JAWSDB CONNECTION ***************************************************************************************
 if (process.env.JAWSDB_URL) {
    console.log("Inside Process JAWSDB"),
-   // sequelize = new Sequelize(process.env.JAWSDB_URL, config);
    sequelize = new Sequelize("vf9bmk358q593g6u", "caojl3asz5f9zr5c", "farnp08ik6pozqp8", config);
    console.log("JAWSDB CONNECTION");
 } else {

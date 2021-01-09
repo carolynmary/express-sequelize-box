@@ -11,19 +11,10 @@ module.exports = function (app) {
       res.render("index");
    });
 
+
    app.get("/polls", (req, res) => {
       Poll.findAll({}).then((results) => {
          res.render("polls", { polls: results });
       });
    });
-
-   // router.get("/main", (req, res) => {
-   //    res.render("main");
-   // });
-   // app.get("/viewPolls", (req, res) => {
-   //    res.render("viewPolls");
-   // });
-   // app.get("/results", (req, res) => {
-   //    res.render("results");
-   // });
 };
