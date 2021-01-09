@@ -19,8 +19,8 @@
     "host": "nwhazdrp7hdpd4a4.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "use_env_variable": "JAWSDB_URL",
     "dialect": "mysql",
-    // "dialectOptions": {
-    //   "charset": "utf8"
-    // }
+    "dialectOptions": {
+      "charset": "utf8"
+    }
   }
 }
