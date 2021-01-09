@@ -9,6 +9,7 @@ CREATE TABLE polls (
     optionThree VARCHAR(30) NOT NULL,
     optionFour VARCHAR(30) NOT NULL,
     createdAt TIMESTAMP NOT NULL,
+    updatedAt TIMESTAMP NOT NULL,
     PRIMARY KEY(id)
 );
 
@@ -17,6 +18,7 @@ CREATE TABLE votes (
     optionSelect VARCHAR(30) NOT NULL,
     pollId INT NOT NULL, 
     createdAt TIMESTAMP NOT NULL,
+    updatedAt TIMESTAMP NOT NULL,
     PRIMARY KEY(id),
     FOREIGN KEY (pollId) REFERENCES polls(id)
 );
