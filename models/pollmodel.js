@@ -12,6 +12,7 @@ const Poll = sequelize.define("polls", {
    optionTwo: Sequelize.STRING,
    optionThree: Sequelize.STRING,
    optionFour: Sequelize.STRING
+   // updatedAt: Sequelize.TIME
 });
 
 //=== SYNCING WITH DB ===========================================
